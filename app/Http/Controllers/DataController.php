@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Requests;
 use App\Data;
 use App\Machine;
+use App\User;
+use Auth;
 
 class DataController extends Controller
 {
@@ -18,8 +20,14 @@ class DataController extends Controller
      */
     public function index(){
 
-      $data = Data::orderBy('id_data', 'DESC')->get();
-      return view('admin.data.index', ['data'=>$data]);
+      if(Auth::user()->akses == 'admin'){
+        $data = Data::orderBy('id_data', 'DESC')->get();
+        return view('admin.data.index', ['data'=>$data]);
+      }
+
+      $data = Auth::user()->data()->paginate(10);
+      $jumlah_data = count($data['data']);
+      return view('admin.data.index', compact('data', 'jumlah_data'));
     }
 
     /**
@@ -101,8 +109,9 @@ class DataController extends Controller
      */
     public function show($id_data)
     {
+        $users = User::all();
         $data = Data::find($id_data);
-        return view('admin.data.show', ['data' => $data]);
+        return view('admin.data.show', ['data' => $data, 'users' => $users]);
     }
 
     /**
