@@ -54,6 +54,7 @@
                     <p>Pin : {{ $data->pin_i }} gram</p>
                     <p>Dust : {{ $data->dust_i }} gram</p>
                     <p>Bark : {{ $data->bark_i }} gram</p>
+                    <p>inputed by : {!! $data->id_user !!}</p>
                   </div>
 
                   <div class="col-md-4">

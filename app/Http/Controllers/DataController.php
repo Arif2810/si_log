@@ -45,6 +45,7 @@ class DataController extends Controller
       $datas->tgl_input = $request->tgl_input;
       $datas->id_data   = $request->id_data;
       $datas->id_mesin  = $request->id_mesin;
+      $datas->id_user   = auth()->user()->id;
       $datas->oversize_i   = round($request->oversize_i, 1);
       $datas->overthick_i   = round($request->overthick_i, 1);
       $datas->largeaccept_i = round($request->largeaccept_i, 1);

@@ -14,4 +14,9 @@ class Data extends Model{
 
         return $this->belongsTo('App\Machine', 'id_mesin');
     }
+
+    public function users(){
+
+        return $this->belongsTo('App\User');
+    }
 }
