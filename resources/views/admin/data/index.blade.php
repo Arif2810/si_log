@@ -43,14 +43,9 @@
                     </div>
 
                     <div class="col-xs-2">
-                      <select class="form-control form-control-sm" name="id_mesin">
-                        <option>- mesin -</option>
-                        @foreach($machines as $machine)
-                        <option value="{{$machine->id_mesin}}">{{$machine->nama_mesin}}</option>
-                        @endforeach
-                      </select>
+                      {{ Form::select('id_mesin', \App\Machine::pluck('nama_mesin', 'id_mesin'), NULL, ['class'=>'form-control']) }}
                     </div>
-                    
+
                     <div class="col-xs-2">
                       <input required="" class="form-control form-control-sm" type="text" name="oversize_i" placeholder="Over Size(gram) ...">
                     </div>
@@ -107,7 +102,7 @@
                   <tr style="background-color: rgb(230, 230, 230);">
                     <th>No</th>
                     <th>Tanggal</th>
-                    <th>Id Mesin</th>
+                    <th>Nama Mesin</th>
                     <th>Over Size</th>
                     <th>Over Thick</th>
                     <th>Large Accept</th>
@@ -120,11 +115,11 @@
                   </tr>
                 </thead>
                 <tbody>
-                  @foreach($datas as $data)
+                  @foreach($data as $data)
                   <tr>
                     <td>{{ $no++ }}</td>
                     <td>{{ $data->tgl_input }}</td>
-                    <td>{{ $data->id_mesin }}</td>
+                    <td>{{ $data->machines->nama_mesin }}</td>
                     <td>{{ $data->oversize }}%</td>
                     <td>{{ $data->overthick }}%</td>
                     <td>{{ $data->largeaccept }}%</td>

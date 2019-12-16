@@ -18,9 +18,8 @@ class DataController extends Controller
      */
     public function index(){
 
-        $machines = Machine::all();
-        $datas = Data::orderBy('id_data', 'DESC')->get();
-        return view('admin.data.index', ['datas'=>$datas, 'machines'=>$machines]);
+      $data = Data::orderBy('id_data', 'DESC')->get();
+      return view('admin.data.index', ['data'=>$data]);
     }
 
     /**
