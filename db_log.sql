@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 05, 2019 at 08:30 AM
--- Server version: 10.3.16-MariaDB
--- PHP Version: 7.1.30
+-- Generation Time: Dec 24, 2019 at 06:51 PM
+-- Server version: 10.1.37-MariaDB
+-- PHP Version: 7.1.24
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -31,7 +31,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `agamas` (
   `id_agama` int(10) UNSIGNED NOT NULL,
   `nama_agama` varchar(20) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -49,35 +49,13 @@ INSERT INTO `agamas` (`id_agama`, `nama_agama`, `created_at`, `updated_at`) VALU
 -- --------------------------------------------------------
 
 --
--- Table structure for table `categories`
---
-
-CREATE TABLE `categories` (
-  `id_kategori` int(10) NOT NULL,
-  `nama_kategori` varchar(100) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `categories`
---
-
-INSERT INTO `categories` (`id_kategori`, `nama_kategori`, `created_at`, `updated_at`) VALUES
-(1, 'kategori 1', '2019-11-19 10:56:35', NULL),
-(2, 'Efisiensi', '2019-11-19 10:56:35', '2019-11-19 11:55:29'),
-(4, 'Safety First', '2019-11-19 11:26:09', '2019-11-19 11:53:36');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `data`
 --
 
 CREATE TABLE `data` (
   `id_data` int(10) NOT NULL,
   `tgl_input` date NOT NULL,
-  `id_mesin` int(10) NOT NULL,
+  `id_mesin` int(10) UNSIGNED NOT NULL,
   `oversize_i` float NOT NULL,
   `overthick_i` float NOT NULL,
   `largeaccept_i` float NOT NULL,
@@ -93,21 +71,21 @@ CREATE TABLE `data` (
   `pin` float NOT NULL,
   `dust` float NOT NULL,
   `bark` float NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `id_user` int(10) UNSIGNED NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `data`
 --
 
-INSERT INTO `data` (`id_data`, `tgl_input`, `id_mesin`, `oversize_i`, `overthick_i`, `largeaccept_i`, `smallaccept_i`, `pin_i`, `dust_i`, `bark_i`, `oversize`, `overthick`, `largeaccept`, `smallaccept`, `totalaccept`, `pin`, `dust`, `bark`, `created_at`, `updated_at`) VALUES
-(14, '2019-11-29', 4, 0, 0, 0, 0, 0, 0, 0, 3.42679, 7.09677, 59.6154, 77.5401, 137.155, 4, 5, 0, '2019-11-29 13:21:26', '2019-11-29 13:21:26'),
-(15, '2019-11-30', 3, 0, 0, 0, 0, 0, 0, 0, 0.64, 1.2959, 713.295, 9.32401, 722.619, 0.860215, 1.00503, 0, '2019-11-29 22:16:56', '2019-11-29 22:16:56'),
-(16, '2019-11-30', 1, 0, 0, 0, 0, 0, 0, 0, 0.7, 1.42, 623.23, 11.27, 634.5, 0.85, 0.77, 0, '2019-11-29 22:26:15', '2019-11-29 22:26:15'),
-(18, '2019-12-03', 1, 10, 20, 1234, 123, 2, 3, 0, 0.7, 1.5, 781, 9.7, 790.7, 0.1, 0.2, 0, '2019-12-03 04:07:06', '2019-12-03 04:07:06'),
-(20, '2019-12-04', 4, 29, 269, 2443, 296, 104, 23, 0, 0.9, 9.3, 338.8, 10.3, 349.1, 3.4, 0.7, 0, '2019-12-04 13:42:59', '2019-12-04 13:42:59'),
-(21, '2019-12-04', 3, 29, 269, 2443, 296, 104, 23, 0, 0.9, 8.5, 77.2, 9.4, 86.6, 3.3, 0.7, 0, '2019-12-04 13:52:38', '2019-12-04 13:52:38');
+INSERT INTO `data` (`id_data`, `tgl_input`, `id_mesin`, `oversize_i`, `overthick_i`, `largeaccept_i`, `smallaccept_i`, `pin_i`, `dust_i`, `bark_i`, `oversize`, `overthick`, `largeaccept`, `smallaccept`, `totalaccept`, `pin`, `dust`, `bark`, `id_user`, `created_at`, `updated_at`) VALUES
+(1, '2019-12-16', 1, 12, 9, 1234.3, 122.2, 2, 2, 0, 0.9, 0.7, 89.3, 8.8, 98.1, 0.1, 0.1, 0, 9, '2019-12-16 10:05:55', '2019-12-16 10:05:55'),
+(2, '2019-12-16', 1, 12, 9, 1432.2, 100, 3, 3, 0, 0.8, 0.6, 91.9, 6.4, 98.3, 0.2, 0.2, 0, 9, '2019-12-16 10:07:37', '2019-12-16 10:07:37'),
+(3, '2019-12-16', 1, 12, 10, 1234.3, 100, 2, 2, 0, 0.9, 0.7, 90.7, 7.4, 98.1, 0.1, 0.1, 0, 9, '2019-12-16 10:16:03', '2019-12-16 10:16:03'),
+(4, '2019-12-16', 3, 12, 9, 1432.2, 100, 2, 3, 0, 0.8, 0.6, 91.9, 6.4, 98.3, 0.1, 0.2, 0, 8, '2019-12-16 10:20:14', '2019-12-16 10:20:14'),
+(5, '2019-12-16', 4, 12, 9, 1234.3, 122.2, 2, 2, 0, 0.9, 0.7, 89.3, 8.8, 98.1, 0.1, 0.1, 0, 9, '2019-12-16 10:24:50', '2019-12-16 10:24:50');
 
 -- --------------------------------------------------------
 
@@ -125,7 +103,7 @@ CREATE TABLE `employees` (
   `id_agama` int(10) UNSIGNED DEFAULT NULL,
   `alamat` varchar(255) DEFAULT NULL,
   `telp` varchar(20) DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -147,7 +125,7 @@ INSERT INTO `employees` (`id_karyawan`, `sap`, `nama_karyawan`, `id_gender`, `tg
 CREATE TABLE `genders` (
   `id_gender` int(10) UNSIGNED NOT NULL,
   `nama_gender` varchar(100) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -166,10 +144,10 @@ INSERT INTO `genders` (`id_gender`, `nama_gender`, `created_at`, `updated_at`) V
 --
 
 CREATE TABLE `machines` (
-  `id_mesin` int(10) NOT NULL,
+  `id_mesin` int(10) UNSIGNED NOT NULL,
   `nama_mesin` varchar(100) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -245,8 +223,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `username`, `email`, `akses`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(4, 'Administrator', 'admin', 'admin@contoh.com', 'admin', '$2y$10$9iZ3kDbNbZUR.4BbxD14kezBlHh.j37xbMrFsCaFE2IJcqgyuKBSu', 'n5YgRBdOmcOYR4HOBulSPrKgZlMm9TXdl63QVFa2Vor98kgsoTQMoVi3yVjt', '2019-03-27 09:18:02', '2019-08-26 14:21:28'),
-(8, 'Putri Utami', 'putriutami', 'putri@gmail.com', 'operator', '$2y$10$aewd4XVctdmIst0Wy38.HOaY/Tn3MBpoNgiHsI6wOeaz4yMxD5igi', '1T6A3vWd4VgHkTecLw2cuVmf4G2MobLSEGr757E5CWmN2vTbW3SOAwffwXce', '2019-11-29 22:24:06', '2019-12-03 01:43:28');
+(4, 'Administrator', 'admin', 'admin@contoh.com', 'admin', '$2y$10$9iZ3kDbNbZUR.4BbxD14kezBlHh.j37xbMrFsCaFE2IJcqgyuKBSu', 'HZyZGGhfpKICpLJsUWoqZuXe4Mktd7RqjwTKKpDqbXubHV9cQ8kc2WuqISwg', '2019-03-27 09:18:02', '2019-08-26 14:21:28'),
+(8, 'Putri Utami', 'putriutami', 'putri@gmail.com', 'operator', '$2y$10$aewd4XVctdmIst0Wy38.HOaY/Tn3MBpoNgiHsI6wOeaz4yMxD5igi', '8VwvxOQ6MlWk9ZWS6rFmz7mexbahsKK5qV31wrzAwvy4rJT7XrtILwkz0jHI', '2019-11-29 22:24:06', '2019-12-03 01:43:28'),
+(9, 'Mr X', 'unknown', 'unknown@contoh.com', 'operator', '$2y$10$2z/lJANcLz5BrQi2q1M2AO8xGo3bqHjn54bg6lke9FOokNaWqS.uy', 'ItmOJJf60rk4BEbde9lunOjHAkyvGsUyy7x89pyzFkE3YN1ID3l5k3xkjnvy', '2019-12-16 05:50:35', '2019-12-16 05:50:35');
 
 --
 -- Indexes for dumped tables
@@ -262,16 +241,12 @@ ALTER TABLE `agamas`
   ADD KEY `id_agama_3` (`id_agama`);
 
 --
--- Indexes for table `categories`
---
-ALTER TABLE `categories`
-  ADD PRIMARY KEY (`id_kategori`);
-
---
 -- Indexes for table `data`
 --
 ALTER TABLE `data`
-  ADD PRIMARY KEY (`id_data`);
+  ADD PRIMARY KEY (`id_data`),
+  ADD KEY `id_mesin` (`id_mesin`),
+  ADD KEY `id_user` (`id_user`);
 
 --
 -- Indexes for table `employees`
@@ -294,7 +269,8 @@ ALTER TABLE `genders`
 -- Indexes for table `machines`
 --
 ALTER TABLE `machines`
-  ADD PRIMARY KEY (`id_mesin`);
+  ADD PRIMARY KEY (`id_mesin`),
+  ADD KEY `id_mesin` (`id_mesin`);
 
 --
 -- Indexes for table `migrations`
@@ -313,7 +289,8 @@ ALTER TABLE `password_resets`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `users_email_unique` (`email`);
+  ADD UNIQUE KEY `users_email_unique` (`email`),
+  ADD KEY `id` (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -326,16 +303,10 @@ ALTER TABLE `agamas`
   MODIFY `id_agama` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT for table `categories`
---
-ALTER TABLE `categories`
-  MODIFY `id_kategori` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
 -- AUTO_INCREMENT for table `data`
 --
 ALTER TABLE `data`
-  MODIFY `id_data` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id_data` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `employees`
@@ -353,7 +324,7 @@ ALTER TABLE `genders`
 -- AUTO_INCREMENT for table `machines`
 --
 ALTER TABLE `machines`
-  MODIFY `id_mesin` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_mesin` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -365,11 +336,18 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `data`
+--
+ALTER TABLE `data`
+  ADD CONSTRAINT `data_ibfk_1` FOREIGN KEY (`id_mesin`) REFERENCES `machines` (`id_mesin`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `data_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `employees`
